@@ -13,9 +13,12 @@ WORKDIR .
 
 ARG PROFILE
 
+ENV PROFILE_ENV=${PROFILE}
+
 RUN echo "PROFILE: ${PROFILE}  --spring.profiles.active=${PROFILE}"
+
 COPY --from=BUILD /home/gradle/build/libs/*.jar app.jar
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "app.jar", "--spring.profiles.active=${PROFILE}"]
+ENTRYPOINT ["java", "-jar", "app.jar", "--spring.profiles.active=${PROFILE_ENV}"]
