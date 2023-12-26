@@ -1,0 +1,13 @@
+# for docker compose, start mysql and backend containers, use internal network
+spring:
+  config:
+    activate:
+      on-profile: test
+  port: 8080
+  datasource:
+    url: jdbc:mysql://mysql:3306/employee?useSSL=false
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect

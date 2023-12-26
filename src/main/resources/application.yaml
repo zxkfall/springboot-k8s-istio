@@ -1,0 +1,4 @@
+# for local, only start mysql container, then run backend app
+spring:
+  profiles:
+    active: test
