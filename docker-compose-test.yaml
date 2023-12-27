@@ -13,3 +13,5 @@ services:
         - PROFILE=test
     depends_on:
       - mysql
+    environment:
+      - MYSQL_HOST=mysql

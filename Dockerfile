@@ -2,7 +2,11 @@ FROM gradle:8.5.0-jdk17 AS BUILD
 
 WORKDIR .
 
-COPY . .
+COPY ./src ./src
+COPY ./build.gradle ./build.gradle
+COPY ./gradlew ./gradlew
+COPY ./settings.gradle ./settings.gradle
+COPY ./gradle ./gradle
 
 RUN gradle build --no-daemon
 
