@@ -3,7 +3,6 @@ spring:
   config:
     activate:
       on-profile: local
-  port: 8080
   datasource:
     url: jdbc:mysql://localhost:3307/employee?useSSL=false
     username: root
@@ -14,3 +13,5 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+server:
+  port: 8080
