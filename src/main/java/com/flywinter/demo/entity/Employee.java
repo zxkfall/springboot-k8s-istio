@@ -1,72 +1,40 @@
 package com.flywinter.demo.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Setter
+@Getter
 @Entity
 @Table(name = "employee")
 public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public long Id;
+    private long id;
 
-    public String Name;
+    private String name;
 
-    public String Email;
+    private String email;
 
-    public String Department;
+    private String department;
 
     public Employee() {
     }
     public Employee(String name, String email, String department) {
-        Name = name;
-        Email = email;
-        Department = department;
-    }
-
-    public long getId() {
-        return Id;
-    }
-
-    public void setId(long id) {
-        Id = id;
-    }
-
-    public String getName() {
-        return Name;
-    }
-
-    public void setName(String name) {
-        Name = name;
-    }
-
-    public String getEmail() {
-        return Email;
-    }
-
-    public void setEmail(String email) {
-        Email = email;
-    }
-
-    public String getDepartment() {
-        return Department;
-    }
-
-    public void setDepartment(String department) {
-        Department = department;
+        this.name = name;
+        this.email = email;
+        this.department = department;
     }
 
     @Override
     public String toString() {
         return "Employee{" +
-                "Id=" + Id +
-                ", Name='" + Name + '\'' +
-                ", Email='" + Email + '\'' +
-                ", Department='" + Department + '\'' +
+                "Id=" + id +
+                ", Name='" + name + '\'' +
+                ", Email='" + email + '\'' +
+                ", Department='" + department + '\'' +
                 '}';
     }
 }
