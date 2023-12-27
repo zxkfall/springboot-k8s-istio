@@ -4,7 +4,7 @@ spring:
     activate:
       on-profile: test
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST}:3306/employee?useSSL=false
+    url: jdbc:mysql://${MYSQL_HOST}:3306/employee?useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true&useSSL=false
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver

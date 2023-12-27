@@ -2,13 +2,15 @@ FROM gradle:8.5.0-jdk17 AS BUILD
 
 WORKDIR .
 
-COPY ./src ./src
 COPY ./build.gradle ./build.gradle
 COPY ./gradlew ./gradlew
 COPY ./settings.gradle ./settings.gradle
 COPY ./gradle ./gradle
+RUN gradle build --no-daemon || return 0
 
+COPY ./src ./src
 RUN gradle build --no-daemon
+
 
 # Path: Dockerfile
 FROM openjdk:17-jdk-alpine

@@ -6,7 +6,7 @@ spring:
   datasource:
 #    url: jdbc:mysql://localhost:3307/employee?useSSL=false
 #   it is better to use host.docker.internal instead of localhost
-    url: jdbc:mysql://host.docker.internal:3307/employee?useSSL=false
+    url: jdbc:mysql://host.docker.internal:3307/employee?useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true&useSSL=false
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
