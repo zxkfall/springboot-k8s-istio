@@ -4,7 +4,6 @@ services:
     extends:
       file: common-service.yaml
       service: mysql
-    restart: always
   backend:
     extends:
       file: common-service.yaml

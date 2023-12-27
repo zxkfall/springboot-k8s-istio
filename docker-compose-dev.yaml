@@ -6,6 +6,8 @@ services:
       service: mysql
     ports:
       - '3307:3306' # expose this only for outside access, to get db data
+    stdin_open: true
+    tty: true
   backend:
     extends:
       file: common-service.yaml
@@ -15,3 +17,5 @@ services:
         - PROFILE=dev
     depends_on:
       - mysql
+# try to avoid network_mode: host, because it will cause mysql container can't be accessed from outside
+#    network_mode: host
