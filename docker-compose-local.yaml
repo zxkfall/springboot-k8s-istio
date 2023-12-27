@@ -1,13 +1,10 @@
 version: '3.8'
 services:
   mysql:
-    image: mysql:8.0.23
-    command: --default-authentication-plugin=mysql_native_password
-    env_file:
-      - ./env/mysql.env
-    container_name: mysql
+    extends:
+      file: common-service.yaml
+      service: mysql
     ports:
       - '3307:3306' # expose this only for outside access, to get db data
-    restart: always
     stdin_open: true
     tty: true

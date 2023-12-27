@@ -15,7 +15,7 @@ ARG PROFILE
 
 ENV PROFILE_ENV=${PROFILE}
 
-RUN echo "PROFILE: ${PROFILE}  --spring.profiles.active=${PROFILE}"
+RUN echo "--spring.profiles.active=${PROFILE}"
 
 COPY --from=BUILD /home/gradle/build/libs/*.jar app.jar
 
