@@ -40,4 +40,4 @@ spec:
           tty: true
           env:
             - name: MYSQL_HOST
-              value: {{ .Release.Name }}-mysql.default.svc.cluster.local
+              value: {{ .Release.Name }}-mysql.{{ .Release.Namespace}}.svc.cluster.local
