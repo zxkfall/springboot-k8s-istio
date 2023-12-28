@@ -9,4 +9,8 @@ public interface IEmployeeService {
     Employee addEmployee(String name, String email, String department);
 
     List<Employee> getAllEmployees();
+
+    void deleteEmployee(long id);
+
+    Employee updateEmployee(long id, String name, String email, String department);
 }

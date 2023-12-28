@@ -27,4 +27,22 @@ public class EmployeeServiceImpl implements IEmployeeService{
         employeeRepository.findAll().forEach(employees::add);
         return employees;
     }
+
+    @Override
+    public void deleteEmployee(long id) {
+        employeeRepository.deleteById(id);
+    }
+
+    @Override
+    public Employee updateEmployee(long id, String name, String email, String department) {
+        var employee = employeeRepository.findById(id);
+        if (employee.isPresent()) {
+            var employeeData = employee.get();
+            employeeData.setName(name);
+            employeeData.setEmail(email);
+            employeeData.setDepartment(department);
+            return employeeRepository.save(employeeData);
+        }
+        return null;
+    }
 }

@@ -1,7 +1,8 @@
 spring:
-  port: 8080
   datasource:
-      url: jdbc:mysql://localhost:3307/employee?useSSL=false
-      username: root
-      password: 123456
-      driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+server:
+  port: 8080
