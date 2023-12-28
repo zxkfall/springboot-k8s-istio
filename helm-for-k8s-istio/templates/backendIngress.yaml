@@ -4,7 +4,7 @@ metadata:
   name: {{ .Release.Name }}-ingress
 spec:
   hosts:
-    - {{ .Values.backendIngress.host }}
+    - "{{ .Values.backendIngress.host }}"
   gateways:
     - {{ .Release.Name }}-ingress
   http:
@@ -26,8 +26,8 @@ spec:
     istio: ingressgateway
   servers:
     - port:
-        number: {{ .Values.backendIngress.exposePort }}}
+        number: {{ .Values.backendIngress.exposePort }}
         name: http
         protocol: HTTP
       hosts:
-        - {{ .Values.backendIngress.host }}
+        - "{{ .Values.backendIngress.host }}"

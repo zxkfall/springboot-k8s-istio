@@ -18,9 +18,9 @@ backend:
   port: '8080'
   replicas: '1'
   defaultPort: '8080'
-  exposePort: '8080'
+  exposePort: 8080
 
 # Ingress 配置
 backendIngress:
-  exposePort: '80'
+  exposePort: 80
   host: '*'
