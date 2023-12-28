@@ -1,0 +1,49 @@
+# templates/mysql.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-mysql
+  labels:
+    app: {{ .Release.Name }}-mysql
+spec:
+  type: ClusterIP
+  ports:
+    - name: {{ .Release.Name }}-mysql
+      port: {{ .Values.mysql.exposePort }}
+      targetPort: {{ .Values.mysql.defaultPort }}
+  selector:
+    app: {{ .Release.Name }}-mysql
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-mysql
+  labels:
+    app: {{ .Release.Name }}-mysql
+spec:
+  replicas: {{ .Values.mysql.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-mysql
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-mysql
+    spec:
+      containers:
+      - name: mysql
+        image: {{ .Values.mysql.image }}
+        ports:
+          - containerPort: {{ .Values.mysql.defaultPort }}
+            name: mysql
+        stdin: true
+        tty: true
+        env:
+          - name: MYSQL_ROOT_PASSWORD
+            value: "{{ .Values.mysql.rootPassword }}"
+          - name: MYSQL_DATABASE
+            value: "{{ .Values.mysql.database }}"
+          - name: MYSQL_USER
+            value: "{{ .Values.mysql.user }}"
+          - name: MYSQL_PASSWORD
+            value: "{{ .Values.mysql.password }}"

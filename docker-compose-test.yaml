@@ -11,6 +11,7 @@ services:
     build:
       args:
         - PROFILE=test
+        - PORT=8080
     depends_on:
       - mysql
     environment:

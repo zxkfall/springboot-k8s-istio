@@ -1,0 +1,33 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ .Release.Name }}-ingress
+spec:
+  hosts:
+    - {{ .Values.backendIngress.host }}
+  gateways:
+    - {{ .Release.Name }}-ingress
+  http:
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            port:
+              number: {{ .Values.backend.exposePort }}
+            host: {{ .Release.Name }}-backend.{{ .Release.Namespace}}.svc.cluster.local
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: {{ .Release.Name }}-ingress
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - port:
+        number: {{ .Values.backendIngress.exposePort }}}
+        name: http
+        protocol: HTTP
+      hosts:
+        - {{ .Values.backendIngress.host }}

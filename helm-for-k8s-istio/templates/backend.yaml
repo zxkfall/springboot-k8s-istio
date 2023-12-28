@@ -9,8 +9,8 @@ spec:
   type: LoadBalancer
   ports:
     - name: http
-      port: 8080
-      targetPort: 8080
+      port: {{ .Values.backend.exposePort }}
+      targetPort: {{ .Values.backend.defaultPort }}
   selector:
     app: {{ .Release.Name }}-backend
 ---
@@ -34,7 +34,7 @@ spec:
         - name: backend
           image: {{ .Values.backend.image }}
           ports:
-            - containerPort: 8080
+            - containerPort: {{ .Values.backend.defaultPort }}
               name: http
           stdin: true
           tty: true

@@ -9,8 +9,8 @@ spec:
   type: ClusterIP
   ports:
     - name: {{ .Release.Name }}-mysql
-      port: 3306
-      targetPort: 3306
+      port: {{ .Values.mysql.exposePort }}
+      targetPort: {{ .Values.mysql.defaultPort }}
   selector:
     app: {{ .Release.Name }}-mysql
 ---
@@ -34,7 +34,7 @@ spec:
       - name: mysql
         image: {{ .Values.mysql.image }}
         ports:
-          - containerPort: {{ .Values.mysql.port }}
+          - containerPort: {{ .Values.mysql.defaultPort }}
             name: mysql
         stdin: true
         tty: true
