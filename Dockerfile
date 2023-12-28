@@ -27,6 +27,6 @@ RUN echo "--spring.profiles.active=${PROFILE}"
 
 COPY --from=BUILD /home/gradle/build/libs/*.jar app.jar
 
-EXPOSE PORT
+EXPOSE ${PORT}
 
 ENTRYPOINT ["java", "-jar", "app.jar", "--spring.profiles.active=${PROFILE_ENV}"]
