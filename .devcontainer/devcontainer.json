@@ -1,0 +1,6 @@
+{
+  "name" : "demo",
+//  "image": "openjdk:17"
+//  dockerFile: "Dockerfile",
+  "dockerComposeFile": "docker-compose.yml"
+}
