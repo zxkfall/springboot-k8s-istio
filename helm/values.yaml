@@ -1,0 +1,21 @@
+# values.yaml
+
+# MySQL 配置
+mysql:
+  image: 'mysql:8.0.23'
+  port: '3306'
+  replicas: '1'
+  defaultPort: '3306'
+  exposePort: '3306'
+  rootPassword: '123456'
+  database: 'employee'
+  user: 'employee'
+  password: '123456'
+
+# 后端服务配置
+backend:
+  image: 'zxkfall/k8s-backend-image:latest'
+  port: '8080'
+  replicas: '1'
+  defaultPort: '8080'
+  exposePort: '8080'
