@@ -1,6 +1,10 @@
-{
-  "name" : "demo",
-//  "image": "openjdk:17"
-//  dockerFile: "Dockerfile",
-  "dockerComposeFile": "docker-compose.yml"
-}
+//{
+//  "image": "openjdk:17-jdk-alpine",
+//  "build": {
+//    "dockerfile": "Dockerfile"
+//  }
+//}
+//{
+//  "dockerComposeFile": ["docker-compose.yml"],
+//  "service": "backend"
+//}//NOT WORK, NEED TO BE FIXED

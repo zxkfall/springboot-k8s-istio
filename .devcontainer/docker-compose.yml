@@ -8,17 +8,17 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: 123456
       MYSQL_USER: employee
-      MYSQL_PASSWORD: employee
+      MYSQL_PASSWORD: 123456
     ports:
       - '3307:3306'
-    volumes:
-      - ../mysql:/var/lib/mysql
-  backend:
-      build:
-        context: .
-        dockerfile: Dockerfile
-      container_name: backend
-      restart: always
-      stdin_open: true
-      tty: true
-      network_mode: host
+#    volumes:
+#      - ./mysql:/var/lib/mysql
+#  backend:
+#      build:
+#        context: .
+#        dockerfile: Dockerfile
+#      container_name: backend
+#      restart: always
+#      stdin_open: true
+#      tty: true
+#      network_mode: host
