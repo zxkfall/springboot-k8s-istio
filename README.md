@@ -38,11 +38,11 @@ docker build --build-arg="PROFILE=test" --build-arg="PORT=8080" -t zxkfall/k8s-b
 docker push zxkfall/k8s-backend-image:latest
 
 brew install minikube
-brew install hyperkit
+brew install hyperkit # or brew install qemu # for M
 brew install kubectl
 brew install helm
 
-minikube start --driver=hyperkit
+minikube start --driver=hyperkit # --driver=qemu # for M
 minikube dashboard
 ```
 
