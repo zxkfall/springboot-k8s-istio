@@ -197,3 +197,9 @@ export SECURE_INGRESS_PORT=$(kubectl -n "$INGRESS_NS" get service "$INGRESS_NAME
 export TCP_INGRESS_PORT=$(kubectl -n "$INGRESS_NS" get service "$INGRESS_NAME" -o jsonpath='{.spec.ports[?(@.name=="tcp")].port}')
 
 ```
+
+```bash
+docker rm $(docker ps -q -f status=exited)
+chmod +x start_k8s_isito.sh
+minikube ssh 'command'
+```
