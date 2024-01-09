@@ -3,20 +3,20 @@
 #### For local development, only run mysql(DockerCompose Mysql)
 
 ```bash
-docker-compose -f=./docker-compose-local.yaml up -d --build
+DOCKER_DEFAULT_PLATFORM=linux/amd64 docker-compose -f=./docker-compose-local.yaml up -d --build
 docker-compose -f=./docker-compose-local.yaml down
 ```
 
 #### For dev deployment, use host port as mysql connection(DockerCompose Mysql and backend external network)
 ```bash
-docker-compose -f=./docker-compose-dev.yaml up -d --build
+DOCKER_DEFAULT_PLATFORM=linux/amd64 docker-compose -f=./docker-compose-dev.yaml up -d --build
 docker-compose -f=./docker-compose-dev.yaml down
 ```
 
 #### For test deployment, use docker network as mysql connection(DockerCompose Mysql and backend internal network)
 
 ```bash
-docker-compose -f=./docker-compose-test.yaml up -d --build
+DOCKER_DEFAULT_PLATFORM=linux/amd64 docker-compose -f=./docker-compose-test.yaml up -d --build
 docker-compose -f=./docker-compose-test.yaml down
 ```
 
@@ -32,6 +32,7 @@ brew install docker
 brew install docker-compose
 
 colima start
+minikube ssh export DOCKER_DEFAULT_PLATFORM=linux/amd64 # for apple silicon
 
 docker login -u <username> -p <password>
 docker build --build-arg="PROFILE=test" --build-arg="PORT=8080" -t zxkfall/k8s-backend-image:latest .
@@ -92,6 +93,11 @@ istioctl dashboard kiali
 Enable LoadBalancer:
 ```bash
 minikube tunnel
+```
+
+clean:
+```bash
+helm uninstall -n=istio-system springboot-k8s-istio-api-gateway
 ```
 
 
