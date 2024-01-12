@@ -202,4 +202,6 @@ export TCP_INGRESS_PORT=$(kubectl -n "$INGRESS_NS" get service "$INGRESS_NAME" -
 docker rm $(docker ps -q -f status=exited)
 chmod +x start_k8s_isito.sh
 minikube ssh 'command'
+colima start --cpu 2 --memory 4 --disk 30
+ 
 ```

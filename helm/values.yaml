@@ -2,7 +2,7 @@
 
 # MySQL 配置
 mysql:
-  image: 'mysql:8.0.23'
+  image: 'mysql:8.2.0'
   port: '3306'
   replicas: '1'
   defaultPort: '3306'
