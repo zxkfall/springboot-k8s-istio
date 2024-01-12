@@ -26,31 +26,26 @@ echo "================set proxy=================="
 echo "==============start minikube================"
 minikube start
 
-echo "==============uninstall istio================"
-helm uninstall -n=istio-system springboot-k8s-istio-api-gateway
-kubectl delete -f https://raw.githubusercontent.com/istio/istio/release-1.20/samples/addons/grafana.yaml
-kubectl delete -f https://raw.githubusercontent.com/istio/istio/release-1.20/samples/addons/prometheus.yaml
-kubectl delete -f https://raw.githubusercontent.com/istio/istio/release-1.20/samples/addons/kiali.yaml # 图形化界面
-istioctl uninstall --purge -y
-
-echo "===============install istio=================="
-istioctl install -y # install istio to k8s
-
 # set platform for docker in apple silicon
 echo "================set platform for docker in apple silicon=================="
-minikube ssh 'touch ~/.bash_profile'
-minikube ssh 'echo "export DOCKER_DEFAULT_PLATFORM=linux/amd64" >> ~/.bash_profile'
-minikube ssh 'source ~/.bash_profile'
-minikube ssh 'echo $DOCKER_DEFAULT_PLATFORM'
+#export DOCKER_DEFAULT_PLATFORM=linux/amd64
+#minikube ssh 'touch ~/.bash_profile'
+#minikube ssh 'echo "export DOCKER_DEFAULT_PLATFORM=linux/amd64" >> ~/.bash_profile'
+#minikube ssh 'source ~/.bash_profile'
+#minikube ssh 'echo $DOCKER_DEFAULT_PLATFORM'
+
+# install istio
+echo "================install istio=================="
+istioctl install -y
 
 echo "=============install grafana================"
-kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.20/samples/addons/grafana.yaml
+kubectl apply -f ./istio-plugin/grafana.yaml
 
 echo "===========install prometheus==============="
-kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.20/samples/addons/prometheus.yaml
+kubectl apply -f ./istio-plugin/prometheus.yaml
 
 echo "=============install kiali=================="
-kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.20/samples/addons/kiali.yaml # 图形化界面
+kubectl apply -f ./istio-plugin/kiali.yaml # 图形化界面
 #kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.20/samples/addons/jaeger.yaml # 链路追踪
 #kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.20/samples/addons/extras/zipkin.yaml # 链路追踪
 
@@ -62,7 +57,12 @@ echo "==============deploy helm==================="
 helm install -n=istio-system springboot-k8s-istio-api-gateway helm-for-k8s-istio-0.1.0.tgz
 
 echo "============open dashboard=================="
-minikube dashboard # open dashboard
+minikube dashboard & # open dashboard in backend
 
+echo "============open kiali======================"
+minikube service -n istio-system kiali &
+
+echo "============open tunnel======================"
+minikube tunnel
 
 
