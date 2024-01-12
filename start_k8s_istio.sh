@@ -59,10 +59,11 @@ helm install -n=istio-system springboot-k8s-istio-api-gateway helm-for-k8s-istio
 echo "============open dashboard=================="
 minikube dashboard & # open dashboard in backend
 
-echo "============open kiali======================"
-minikube service -n istio-system kiali &
+echo "========================================================="
 
-echo "============open tunnel======================"
-minikube tunnel
+echo "Please run 'minikube service -n istio-system kiali' in another terminal to open kiali dashboard"
+#minikube service -n istio-system kiali  # need run in another terminal
 
+echo "Please run 'minikube tunnel' in another terminal to access api gateway"
+#minikube tunnel # need run in another terminal
 
