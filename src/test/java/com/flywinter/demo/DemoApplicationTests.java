@@ -8,6 +8,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -125,6 +126,30 @@ class DemoApplicationTests {
             res.add(newList);
         }
         res.forEach(System.out::println);
+    }
+
+    @Test
+    void version5() {
+        List<Integer> teams = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+        int length = teams.size();
+        List<List<Integer>> res = new ArrayList<>();
+
+        for (int i = 0; i < length - 1; i++) {
+            List<Integer> newList = new ArrayList<>();
+            newList.add(teams.get(length - 1));
+            newList.add(teams.get(i));
+
+            for (int j = 0; j < length - 2; j++) {
+                newList.add(teams.get((i + 1 + j) % (length - 1)));
+            }
+            res.add(newList);
+        }
+
+        res.forEach(System.out::println);
+    }
+
+    @Test
+    void version7() {
     }
 
     // for two teams, pair not repeat, one team for new, another for old
