@@ -102,11 +102,12 @@ class DemoApplicationTests {
         }
         res.forEach(System.out::println);
     }
+
     // by anchor out res
     @Test
     void version4() {
         //1 2 3 4 5 6   六只球队
-        List<Integer> teams = List.of(1, 2, 3, 4, 5, 6, 7 ,8);
+        List<Integer> teams = List.of(1, 2, 3, 4, 5, 6, 7, 8);
         //Anchor
         Integer anchor = teams.get(0);
         int length = teams.size();
@@ -122,6 +123,27 @@ class DemoApplicationTests {
                 newList.add(oldList.get(j + 1));
             }
             res.add(newList);
+        }
+        res.forEach(System.out::println);
+    }
+
+    // for two teams, pair not repeat, one team for new, another for old
+    @Test
+    void version6() {
+        //1 2 3 4   5 6 7 8  两队人
+        List<Integer> teams = List.of(1, 2, 3, 4, 5, 6, 7, 8);
+
+        List<Integer> team1 = List.of(1, 2, 3, 4);
+        List<Integer> team2 = List.of(5, 6, 7, 8);
+        ArrayList<List<Integer>> res = new ArrayList<>();
+        var length = team1.size();
+        for (int i = 0; i < length; i++) {
+            var teamList = new ArrayList<Integer>();
+            for (int j = 0; j < length; j++) {
+                teamList.add(team1.get(j));
+                teamList.add(team2.get((j + i) % length));
+            }
+            res.add(teamList);
         }
         res.forEach(System.out::println);
     }
